@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>background process</title>
+    </head>
+    <body>
+    </body>
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer, clipboard } = electron;
+        const $ = require('jQuery');
+        ipcRenderer.on('clipboard:update', () => {
+            ipcRenderer.send('clipboard:update', clipboard.readText());
+        });
+        $(document).on('keydown', (e) => {
+            ipcRenderer.send('kdown', e);
+        });
+
+        if (window.Worker) {
+            var keyboardListenerWorker = new Worker('webworker.js');
+
+            keyboardListenerWorker.onmessage = (e) => {
+                ipcRenderer.send('kdown', e);
+            };
+
+            keyboardListenerWorker.postMessage( {start : true } );
+        }
+
+    </script>
+</html>

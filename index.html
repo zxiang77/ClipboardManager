@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Clipboard Manager</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center">Clipboard Manager</a>
+            </div>
+        </nav>
+        <div class="container">
+            <ul></ul>
+        </div>
+    </body>
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+        const $ = require('jQuery');
+        /*
+         * list all the available clips and provide action to delete, edit, drag to reorder
+         * @TODO: implement draggable
+         */
+        // const ul = $('ul');
+
+        ipcRenderer.on('clip:add', (e, data) => {
+            if (!$('ul').hasClass('collection')) {
+                $('ul').addClass('collection');
+            }
+            // TODO: should add some template here
+            $('ul').add('li')
+                   .addClass('collection-item')
+                   .val(data);
+        });
+
+        $(document).on('keydown', (e) => {
+            ipcRenderer.send('kdown', e);
+        });
+
+    </script>
+</html>

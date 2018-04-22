@@ -1,0 +1,38 @@
+{
+  "name": "clipboardmanager",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "electron-rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxiang77/ClipboardManager.git"
+  },
+  "keywords": [
+    "Clipboard",
+    "management"
+  ],
+  "author": "Zili Xiang",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zxiang77/ClipboardManager/issues"
+  },
+  "homepage": "https://github.com/zxiang77/ClipboardManager#readme",
+  "devDependencies": {
+    "electron": "^1.8.4",
+    "electron-rebuild": "^1.4.0"
+  },
+  "dependencies": {
+    "iohook": "^0.1.15",
+    "jQuery": "^1.7.4",
+    "materialize-css": "^1.0.0-beta"
+  },
+  "cmake-js": {
+    "runtime": "electron",
+    "runtimeVersion": "1.4.7"
+  }
+}
